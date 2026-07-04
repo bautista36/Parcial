@@ -1,0 +1,4 @@
+D:\MATERIAS\Programacion 2\Visual Studio\General\Proyectos\Parcial\Parcial\obj\Debug\net9.0\Parcial.GeneratedMSBuildEditorConfig.editorconfig
+D:\MATERIAS\Programacion 2\Visual Studio\General\Proyectos\Parcial\Parcial\obj\Debug\net9.0\Parcial.AssemblyInfoInputs.cache
+D:\MATERIAS\Programacion 2\Visual Studio\General\Proyectos\Parcial\Parcial\obj\Debug\net9.0\Parcial.AssemblyInfo.cs
+D:\MATERIAS\Programacion 2\Visual Studio\General\Proyectos\Parcial\Parcial\obj\Debug\net9.0\Parcial.csproj.CoreCompileInputs.cache

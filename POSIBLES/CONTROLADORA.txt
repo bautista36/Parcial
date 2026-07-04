@@ -1,0 +1,123 @@
+// Legajo: [Tu Legajo] - Apellidos y Nombres: [Tus Apellidos, Tus Nombres]
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TransporteEscolar.Modelos;
+
+namespace TransporteEscolar.Controladores
+{
+    public class CControladora
+    {
+        private List<ITrabajador> trabajadores;
+        private List<CUnidad> unidades;
+        private List<CViaje> viajes;
+
+        public CControladora()
+        {
+            trabajadores = new List<ITrabajador>();
+            unidades = new List<CUnidad>();
+            viajes = new List<CViaje>();
+            
+            // Datos de prueba precargados para poder testear inmediatamente
+            trabajadores.Add(new CConductor(101, "Perez", "Juan", 5554, 'A'));
+            trabajadores.Add(new CConductor(102, "Lopez", "Pedro", 7778, 'B'));
+            trabajadores.Add(new CAcompanante(201, "Gomez", "Ana", true));
+            trabajadores.Add(new CAcompanante(202, "Diaz", "Marta", false));
+            
+            unidades.Add(new CCombi("AAA111", "Ford", "Transit"));
+            unidades.Add(new CMicro("BBB222", "Mercedes", "Benz", 15));
+        }
+
+        public List<ITrabajador> ObtenerTrabajadores()
+        {
+            return trabajadores.ToList();
+        }
+
+        // Operación crítica requerida con manejo de excepciones estricto
+        public void RegistrarViaje(string patente, ulong legajoConductor, List<ulong> legajosAcompanantes, string destino)
+        {
+            try
+            {
+                // 1. Validar existencia de Unidad y Trabajadores usando LINQ (.FirstOrDefault)
+                CUnidad unidad = null;
+                foreach (CUnidad unidadActual in unidades)
+                {
+                    if (unidadActual.Patente.Equals(patente, StringComparison.OrdinalIgnoreCase))
+                    {
+                        unidad = unidadActual;
+                        break;
+                    }
+                }
+
+                if (unidad == null)
+                {
+                    throw new Exception("Error: La unidad especificada no existe.");
+                }
+
+                CConductor conductor = null;
+                foreach (ITrabajador trabajador in trabajadores)
+                {
+                    if (trabajador is CConductor conductorActual && conductorActual.Legajo == legajoConductor)
+                    {
+                        conductor = conductorActual;
+                        break;
+                    }
+                }
+
+                if (conductor == null)
+                {
+                    throw new Exception("Error: El conductor especificado no existe.");
+                }
+
+                List<CAcompanante> deTurnoAcompanantes = new List<CAcompanante>();
+                foreach (ulong legajo in legajosAcompanantes)
+                {
+                    CAcompanante acomp = null;
+                    foreach (ITrabajador trabajador in trabajadores)
+                    {
+                        if (trabajador is CAcompanante acompananteActual && acompananteActual.Legajo == legajo)
+                        {
+                            acomp = acompananteActual;
+                            break;
+                        }
+                    }
+
+                    if (acomp == null)
+                    {
+                        throw new Exception($"Error: El acompañante con legajo {legajo} no existe.");
+                    }
+
+                    deTurnoAcompanantes.Add(acomp);
+                }
+
+                // 2. Validar Categoría de Licencia (Regla de negocio: Cat B solo Combi)
+                if (conductor.CategoriaLicencia == 'B' && unidad is CMicro)
+                {
+                    throw new Exception("Error: Categoría no habilitada. Conductor Cat B no puede manejar Micros.");
+                }
+
+                // 3. Validar exceso de acompañantes según el tipo de vehículo
+                if (unidad is CCombi && deTurnoAcompanantes.Count > 1)
+                {
+                    throw new Exception("Error: Exceso de acompañantes. Las Combis permiten como máximo 1.");
+                }
+                else if (unidad is CMicro micro)
+                {
+                    int maxPermitido = micro.CapacidadMaxima - 1; // Descontando siempre al conductor
+                    if (deTurnoAcompanantes.Count > maxPermitido)
+                    {
+                        throw new Exception($"Error: Exceso de acompañantes. El micro tolera un máximo de {maxPermitido}.");
+                    }
+                }
+
+                // Si todo es consistente, se crea el registro del viaje con éxito
+                viajes.Add(new CViaje(destino, unidad, conductor, deTurnoAcompanantes));
+            }
+            catch (Exception ex)
+            {
+                // Se relanza la excepción capturada para que la Vista se entere del problema
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+}

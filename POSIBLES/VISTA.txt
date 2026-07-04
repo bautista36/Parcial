@@ -1,0 +1,56 @@
+private void MostrarPersonal()
+        {
+            Console.WriteLine("\n--- LISTADO DE PERSONAL ---");
+            List<ITrabajador> lista = controladora.ObtenerTrabajadores();
+            if (lista.Count == 0)
+            {
+                Console.WriteLine("No hay trabajadores.");
+                return;
+            }
+            foreach (ITrabajador t in lista)
+        }
+
+        private void CargarDatosViaje()
+        {
+            Console.WriteLine("\n--- REGISTRO DE VIAJE ---");
+            Console.Write("Ingrese Patente del Vehículo: ");
+            string patente = Console.ReadLine();
+
+            Console.Write("Ingrese Legajo del Conductor: ");
+            if (!ulong.TryParse(Console.ReadLine(), out ulong legConductor))
+            {
+                Console.WriteLine("Error: El legajo debe ser numérico.");
+                return;
+            }
+
+            Console.Write("Ingrese Destino Institución: ");
+            string destino = Console.ReadLine();
+
+            List<ulong> legajosAcomp = new List<ulong>();
+            Console.Write("¿Desea asignar un acompañante a este viaje? (s/n): ");
+            if (Console.ReadLine().ToLower() == "s")
+            {
+                Console.Write("Ingrese Legajo del Acompañante: ");
+                if (ulong.TryParse(Console.ReadLine(), out ulong legAcomp))
+                {
+                    legajosAcomp.Add(legAcomp);
+                }
+                else
+                {
+                    Console.WriteLine("Error: Legajo inválido.");
+                    return;
+                }
+            }
+
+            // Enviamos los datos al controlador y capturamos si ocurre un error de validación
+            try
+            {
+                controladora.RegistrarViaje(patente, legConductor, legajosAcomp, destino);
+                Console.WriteLine("\n¡Viaje registrado de forma exitosa!");
+            }
+            catch (Exception ex)
+            {
+                // Imprime el mensaje limpio generado por el throw de la controladora
+                Console.WriteLine($"\n[PROCESO INTERRUMPIDO] {ex.Message}");
+            }
+        }

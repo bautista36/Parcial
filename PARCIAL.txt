@@ -1,0 +1,31 @@
+Importante: En la primera línea de cada archivo, como comentario, deberá incluirse legajo, apellidos y nombres del estudiante.
+
+Se calificará:
+•     El porcentaje de satisfacción de las funcionalidades solicitadas.
+•     Las técnicas, metodologías y estrategias de programación aplicadas y la claridad conceptual en el desarrollo.
+•     La eficiencia en el empleo y la gestión de los recursos de memoria, de las estructuras de control y del flujo de ejecución.
+•     La correcta promoción de tipos, que debe ser estricta y explícita.
+•     La observancia de los principios de la P.O.O. estudiados.
+•     La aplicación correcta de la arquitectura MVC (Modelo – Vista – Controlador).
+•     El correcto uso del manejo de excepciones (try–catch) en los métodos indicados.
+•     El cumplimiento de los tiempos y pautas de examinación.
+
+Enunciado:
+Caso de Estudio:
+Una empresa de transporte escolar necesita un sistema para administrar sus trabajadores, sus unidades de transporte y los viajes realizados diariamente hacia distintas instituciones educativas.
+La empresa emplea dos tipos de trabajadores:
+1. Conductores: Legajo (entero largo sin signo), Apellido (cadena de caracteres), Nombre(cadena de caracteres), Nº de registro (entero sin signo), Categoría de licencia (caracter) (A o B).
+2. Acompañantes: Legajo (entero largo sin signo), Apellido (cadena de caracteres), Nombre (cadena de caracteres), Certificación en cuidados básicos (booleano).
+
+Ambos tipos comparten propiedades y el método DarDatos(), por lo cual se solicita el uso obligatorio de la interfaz ITrabajador.
+
+La empresa dispone de dos tipos de unidades:
+a)    Combi: Patente, Marca, Modelo (todas cadenas de caracteres).
+b)    Micro: Patente, Marca, Modelo (todas cadenas de caracteres), Capacidad máxima de pasajeros (entero corto sin signo).
+
+Validaciones obligatorias del sistema
+•     Categoría A → puede manejar Combi o Micro.
+•     Categoría B → solo puede manejar Combi.
+•     Combi permite como máximo 1 acompañante.
+•     Micro permite tantos acompañantes como su capacidad lo permita, descontando siempre al conductor.
+•     Debe implementarse manejo de excepciones (try–catch) en la operación de registrar viaje, capturando errores como trabajador inexistente, unidad inexistente, categoría no habilitada, exceso de acompañantes o datos inconsistentes.
