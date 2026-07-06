@@ -10,8 +10,8 @@ namespace TransporteEscolar
             while (!salir)
             {
                 Console.Clear();
-                Console.WriteLine("1. ");
-                Console.WriteLine("2. ");
+                Console.WriteLine("1. Agregar personal");
+                Console.WriteLine("2. Eliminar personal");
                 Console.WriteLine("3. ");
                 Console.WriteLine("4. Guardar datos");
                 Console.WriteLine("5. Salir");

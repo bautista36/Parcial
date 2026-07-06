@@ -53,11 +53,11 @@ namespace TransporteEscolar.Controladores
 
         public bool EliminarUnidad(string patente)
         {
-            for (int i = 0; i < unidades.Count; i++)
+            foreach (CUnidad unidad in unidades)
             {
-                if (unidades[i].Patente.Equals(patente, System.StringComparison.OrdinalIgnoreCase))
+                if (unidad.Patente == patente)
                 {
-                    unidades.RemoveAt(i);
+                    unidades.Remove(unidad);
                     return true;
                 }
             }
@@ -71,6 +71,11 @@ namespace TransporteEscolar.Controladores
             {
                 viajes.Add(viaje);
             }
+        }
+
+        public List<CViaje> ObtenerViajes()
+        {
+            return viajes;
         }
 
         public bool EliminarViaje(CViaje viaje)
@@ -97,7 +102,7 @@ namespace TransporteEscolar.Controladores
             viajes.Add(viaje);
         }
 
-        private CUnidad BuscarUnidad(string patente)
+        public CUnidad BuscarUnidad(string patente)
         {
             foreach (CUnidad unidad in unidades)
             {
@@ -110,7 +115,7 @@ namespace TransporteEscolar.Controladores
             return null;
         }
 
-        private CConductor BuscarConductor(ulong legajo)
+        public CConductor BuscarConductor(ulong legajo)
         {
             foreach (ITrabajador trabajador in trabajadores)
             {
