@@ -165,6 +165,81 @@ namespace Parcial2
             return null;
         }
 
+        /*
+        // Eliminar operador por legajo.
+        public bool EliminarOperador(ulong legajo)
+        {
+            for (int i = 0; i < operadores.Count; i++)
+            {
+                if (operadores[i].Legajo == legajo)
+                {
+                    operadores.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Eliminar máquina por código.
+        public bool EliminarMaquina(string codigo)
+        {
+            for (int i = 0; i < maquinas.Count; i++)
+            {
+                if (maquinas[i].Codigo == codigo)
+                {
+                    maquinas.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Eliminar obra por código.
+        public bool EliminarObra(string codigo)
+        {
+            for (int i = 0; i < obras.Count; i++)
+            {
+                if (obras[i].Codigo == codigo)
+                {
+                    obras.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Eliminar asignación por código de máquina y fecha.
+        public bool EliminarAsignacion(string codigoMaquina, DateTime fecha)
+        {
+            for (int i = 0; i < asignaciones.Count; i++)
+            {
+                if (asignaciones[i].Maquina.Codigo == codigoMaquina &&
+                    asignaciones[i].Fecha.Date == fecha.Date)
+                {
+                    asignaciones.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+        */
+
+        /*
+        // Una asignación se diferencia por la máquina y la fecha,
+        // porque una máquina no puede estar asignada dos veces el mismo día.
+        public CAsignacion BuscarAsignacion(string codigoMaquina, DateTime fecha)
+        {
+            foreach (CAsignacion item in asignaciones)
+            {
+                if (item.Maquina.Codigo == codigoMaquina && item.Fecha.Date == fecha.Date)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        */
+
         public List<IMaquina> ObtenerMaquinas()
         {
             return maquinas;

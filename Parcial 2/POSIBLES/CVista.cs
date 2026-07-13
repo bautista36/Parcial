@@ -173,6 +173,166 @@ namespace Parcial2
                 maquina.MostrarDatos();
         }
 
+        /*
+        // Para agregarlos al menú:
+        // Console.WriteLine("9. Consultar operador");
+        // Console.WriteLine("10. Consultar máquina");
+        // Console.WriteLine("11. Consultar obra");
+        // Console.WriteLine("12. Consultar asignación");
+        // case "9": ConsultarOperador(); break;
+        // case "10": ConsultarMaquina(); break;
+        // case "11": ConsultarObra(); break;
+        // case "12": ConsultarAsignacion(); break;
+        // Console.WriteLine("13. Eliminar operador");
+        // Console.WriteLine("14. Eliminar máquina");
+        // Console.WriteLine("15. Eliminar obra");
+        // Console.WriteLine("16. Eliminar asignación");
+        // case "13": EliminarOperador(); break;
+        // case "14": EliminarMaquina(); break;
+        // case "15": EliminarObra(); break;
+        // case "16": EliminarAsignacion(); break;
+
+        // Clave: legajo, porque es único para cada operador.
+        private void ConsultarOperador()
+        {
+            Console.Write("Legajo del operador: ");
+            ulong legajo = ulong.Parse(Console.ReadLine());
+            IOperador operador = controladora.BuscarOperador(legajo);
+
+            if (operador == null)
+            {
+                Console.WriteLine("No existe ese operador.");
+            }
+            else
+            {
+                operador.MostrarDatos();
+            }
+        }
+
+        // Clave: código, porque es único para cada máquina.
+        private void ConsultarMaquina()
+        {
+            Console.Write("Código de máquina: ");
+            string codigo = Console.ReadLine();
+            IMaquina maquina = controladora.BuscarMaquina(codigo);
+
+            if (maquina == null)
+            {
+                Console.WriteLine("No existe esa máquina.");
+            }
+            else
+            {
+                maquina.MostrarDatos();
+            }
+        }
+
+        // Clave: código, porque es único para cada obra.
+        private void ConsultarObra()
+        {
+            Console.Write("Código de obra: ");
+            string codigo = Console.ReadLine();
+            CObra obra = controladora.BuscarObra(codigo);
+
+            if (obra == null)
+            {
+                Console.WriteLine("No existe esa obra.");
+            }
+            else
+            {
+                Console.WriteLine("Código: " + obra.Codigo);
+                Console.WriteLine("Nombre: " + obra.Nombre);
+                Console.WriteLine("Ubicación: " + obra.Ubicacion);
+            }
+        }
+
+        // Clave: código de máquina + fecha.
+        private void ConsultarAsignacion()
+        {
+            Console.Write("Código de máquina: ");
+            string codigo = Console.ReadLine();
+            Console.Write("Fecha: ");
+            DateTime fecha = DateTime.Parse(Console.ReadLine());
+            CAsignacion asignacion = controladora.BuscarAsignacion(codigo, fecha);
+
+            if (asignacion == null)
+            {
+                Console.WriteLine("No existe una asignación con esos datos.");
+            }
+            else
+            {
+                Console.WriteLine("Obra: " + asignacion.Obra.Nombre);
+                Console.WriteLine("Operador: " + asignacion.Operador.Apellido + ", " +
+                                  asignacion.Operador.Nombre);
+            }
+        }
+
+        // Eliminar operador por legajo.
+        private void EliminarOperador()
+        {
+            Console.Write("Legajo del operador: ");
+            ulong legajo = ulong.Parse(Console.ReadLine());
+
+            if (controladora.EliminarOperador(legajo))
+            {
+                Console.WriteLine("Operador eliminado.");
+            }
+            else
+            {
+                Console.WriteLine("No existe ese operador.");
+            }
+        }
+
+        // Eliminar máquina por código.
+        private void EliminarMaquina()
+        {
+            Console.Write("Código de máquina: ");
+            string codigo = Console.ReadLine();
+
+            if (controladora.EliminarMaquina(codigo))
+            {
+                Console.WriteLine("Máquina eliminada.");
+            }
+            else
+            {
+                Console.WriteLine("No existe esa máquina.");
+            }
+        }
+
+        // Eliminar obra por código.
+        private void EliminarObra()
+        {
+            Console.Write("Código de obra: ");
+            string codigo = Console.ReadLine();
+
+            if (controladora.EliminarObra(codigo))
+            {
+                Console.WriteLine("Obra eliminada.");
+            }
+            else
+            {
+                Console.WriteLine("No existe esa obra.");
+            }
+        }
+
+        // Eliminar asignación por código de máquina y fecha.
+        private void EliminarAsignacion()
+        {
+            Console.Write("Código de máquina: ");
+            string codigo = Console.ReadLine();
+            Console.Write("Fecha: ");
+            DateTime fecha = DateTime.Parse(Console.ReadLine());
+
+            if (controladora.EliminarAsignacion(codigo, fecha))
+            {
+                Console.WriteLine("Asignación eliminada.");
+            }
+            else
+            {
+                Console.WriteLine("No existe una asignación con esos datos.");
+            }
+        }
+        */
+
         private void GuardarDatos()
         {
             try
