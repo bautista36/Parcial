@@ -108,7 +108,7 @@ namespace Parcial2
 
         private bool OperadorHabilitado(IOperador operador, IMaquina maquina)
         {
-            string categoria = operador.Categoria.Trim().ToUpper();
+            string categoria = operador.Categoria.ToUpper();
 
             if (categoria == "A")
             {
@@ -117,13 +117,12 @@ namespace Parcial2
 
             if (categoria == "B")
             {
-                return maquina is CMaquinas && !(maquina is CGrua);
+                return maquina is CMaquinas && maquina is not CGrua;
             }
 
             if (categoria == "C")
             {
-                CMaquinas maquinaComun = maquina as CMaquinas;
-                return maquinaComun != null && !(maquina is CGrua) && maquinaComun.EsBasica;
+                return maquina is CMaquinas maquinaNormal && maquina is not CGrua && maquinaNormal.EsBasica;
             }
 
             return false;
