@@ -9,10 +9,29 @@ namespace Parcial2.Modelos
         private CObra obra;
         private IOperador operador;
 
-        public DateTime Fecha { get { return fecha; } }
-        public IMaquina Maquina { get { return maquina; } }
-        public CObra Obra { get { return obra; } }
-        public IOperador Operador { get { return operador; } }
+        public DateTime Fecha
+        {
+            get { return fecha; }
+            set { fecha = value; }
+        }
+
+        public IMaquina Maquina
+        {
+            get { return maquina; }
+            set { maquina = value; }
+        }
+
+        public CObra Obra
+        {
+            get { return obra; }
+            set { obra = value; }
+        }
+
+        public IOperador Operador
+        {
+            get { return operador; }
+            set { operador = value; }
+        }
 
         public CAsignacion(DateTime fecha, IMaquina maquina, CObra obra, IOperador operador)
         {

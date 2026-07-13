@@ -8,14 +8,27 @@ namespace Parcial2.Modelos
         private bool esBasica;
         private static int cantidadMaquinas;
 
-        public string Codigo { get { return codigo; } }
+        public string Codigo
+        {
+            get { return codigo; }
+            set { codigo = value; }
+        }
         public string Marca
         {
             get { return marca; }
             set { marca = value; }
         }
-        public string Modelo { get { return modelo; } }
-        public bool EsBasica { get { return esBasica; } }
+        public string Modelo
+        {
+            get { return modelo; }
+            set { modelo = value; }
+        }
+
+        public bool EsBasica
+        {
+            get { return esBasica; }
+            set { esBasica = value; }
+        }
 
         public CMaquinas(string codigo, string marca, string modelo, bool esBasica)
         {

@@ -7,10 +7,29 @@ namespace Parcial2.Modelos
         private string nombre;
         private string categoria;
 
-        public ulong Legajo { get { return legajo; } }
-        public string Apellido { get { return apellido; } }
-        public string Nombre { get { return nombre; } }
-        public string Categoria { get { return categoria; } }
+        public ulong Legajo
+        {
+            get { return legajo; }
+            set { legajo = value; }
+        }
+
+        public string Apellido
+        {
+            get { return apellido; }
+            set { apellido = value; }
+        }
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public string Categoria
+        {
+            get { return categoria; }
+            set { categoria = value; }
+        }
 
         public COperador(ulong legajo, string apellido, string nombre, string categoria)
         {

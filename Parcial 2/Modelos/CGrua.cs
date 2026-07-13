@@ -4,7 +4,11 @@ namespace Parcial2.Modelos
     {
         private double capacidad;
 
-        public double Capacidad { get { return capacidad; } }
+        public double Capacidad
+        {
+            get { return capacidad; }
+            set { capacidad = value; }
+        }
 
         public CGrua(string codigo, string marca, string modelo, double capacidad)
             : base(codigo, marca, modelo, false)

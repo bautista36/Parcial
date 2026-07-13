@@ -21,7 +21,6 @@ namespace Parcial2
             while (!salir)
             {
                 Console.Clear();
-                Console.WriteLine("--- ALQUIOBRAS S.A. ---");
                 Console.WriteLine("1. Registrar operador");
                 Console.WriteLine("2. Registrar máquina");
                 Console.WriteLine("3. Registrar obra");
